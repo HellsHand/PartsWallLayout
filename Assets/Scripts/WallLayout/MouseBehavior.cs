@@ -3,6 +3,13 @@ using System.Collections;
 
 public class MouseBehavior : MonoBehaviour {
 
+    Rigidbody rb;
+
+    void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody>();
+    }
+
 	void OnMouseEnter()
     {
         Debug.Log("Mouse Entered");
@@ -26,6 +33,16 @@ public class MouseBehavior : MonoBehaviour {
         float mouseX = Input.mousePosition.x;
         float mouseY = Input.mousePosition.y;
         Vector3 mouseLoc = Camera.main.ScreenToWorldPoint(new Vector3(mouseX, mouseY, 109));
-        transform.position = mouseLoc;
+        rb.MovePosition(mouseLoc);
+    }
+
+    void OnTriggerEnter(Collider col)
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
+    }
+
+    void OnTriggerExit(Collider col)
+    {
+        gameObject.GetComponent<MeshRenderer>().material.color = Color.white;
     }
 }
