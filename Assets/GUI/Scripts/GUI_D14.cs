@@ -45,6 +45,8 @@ public class GUI_D14 : MonoBehaviour
         }
         Transform box = (Transform)Instantiate(item, new Vector3(newPosX, newPosY, 69.0f), Quaternion.identity);
         TextMesh mesh = box.FindChild("New Text").GetComponent(typeof(TextMesh)) as TextMesh;
+        Vector2 colDim = GetColliderSize(width, height);
+        box.GetComponent<BoxCollider>().size = new Vector3(colDim.x, colDim.y, 1);
         mesh.text = label[button];
 
         box.transform.localScale = new Vector3(width, height, 2.0f);
@@ -99,5 +101,50 @@ public class GUI_D14 : MonoBehaviour
             }
             GUI.EndGroup();
         }
+    }
+
+    Vector2 GetColliderSize(float width, float height)
+    {
+        Vector2 boxDim = new Vector2(width, height);
+        Vector2 dim = new Vector2(1, 1);
+        boxDim.x = width + 1;
+        dim.x = (boxDim.x - width) / width + 1;
+
+        if(height <= 5)
+        {
+            boxDim.y = 2.0f;
+        }
+        else if(height > 5 && height <= 8)
+        {
+            boxDim.y = 3.0f;
+        }
+        else if (height > 8 && height <= 11)
+        {
+            boxDim.y = 4.0f;
+        }
+        else if (height > 11 && height <= 14)
+        {
+            boxDim.y = 5.0f;
+        }
+        else if (height > 14 && height <= 17)
+        {
+            boxDim.y = 6.0f;
+        }
+        else if (height > 17 && height <= 20)
+        {
+            boxDim.y = 7.0f;
+        }
+        else if (height > 20 && height <= 23)
+        {
+            boxDim.y = 8.0f;
+        }
+        else if (height > 23 && height <= 26)
+        {
+            boxDim.y = 9.0f;
+        }
+        boxDim.y = boxDim.y * 3;
+        dim.y = (boxDim.y - height) / height + 1;
+
+        return dim;
     }
 }
