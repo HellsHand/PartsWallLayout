@@ -10,16 +10,6 @@ public class MouseBehavior : MonoBehaviour {
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
-	void OnMouseEnter()
-    {
-        Debug.Log("Mouse Entered");
-    }
-
-    void OnMouseDown()
-    { 
-        Debug.Log("Mouse Pressed");
-    }
-
     void OnMouseOver()
     {
         if (Input.GetKeyDown(KeyCode.Mouse1))
